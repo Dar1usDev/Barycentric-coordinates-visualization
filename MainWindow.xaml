@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Barycentric_coordinates_visualization"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="900">
+        Title="MainWindow" Height="550" Width="900"
+        ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -44,40 +46,43 @@
         </StackPanel>
 
         <StackPanel Name="pointStackPanel" Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
-            <Label Content="x:" FontSize="20" VerticalContentAlignment="Center"/>
-            <TextBox Name="xTextBox" FontSize="20" Width="50" VerticalContentAlignment="Center"/>
-            <Label Content="y:" FontSize="20" VerticalContentAlignment="Center"/>
-            <TextBox Name="yTextBox" FontSize="20" Width="50" VerticalContentAlignment="Center"/>
+            <Label Content="x  :" FontSize="20" VerticalContentAlignment="Center"/>
+            <TextBox Name="xTextBox" FontSize="20" Width="50" VerticalContentAlignment="Center" IsEnabled="False"/>
+            <Label Content="y  :" FontSize="20" VerticalContentAlignment="Center"/>
+            <TextBox Name="yTextBox" FontSize="20" Width="50" VerticalContentAlignment="Center" IsEnabled="False"/>
         </StackPanel>
 
-        <StackPanel Name="drawStackPanel" Orientation="Vertical" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">
-            <Button Name="drawPointButton" Content="Draw a point" FontSize="22" Grid.Column="0" Grid.Row="4" 
-                MaxHeight="60" MaxWidth="150" Click="drawPointButton_Click"/>
-            <TextBox Name="ksiValueTextBox" FontSize="20" Width="60" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+        <StackPanel Name="ksiStackPanel" Orientation="Vertical" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center">
+            <RadioButton Name="ksi1RadioButton" Content="ksi1" FontSize="25" VerticalContentAlignment="Center"/>
+            <RadioButton Name="ksi2RadioButton" Content="ksi2" FontSize="25" VerticalContentAlignment="Center"/>
+            <RadioButton Name="ksi3RadioButton" Content="ksi3" FontSize="25" VerticalContentAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Name="ksi1StackPanel" Orientation="Vertical" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">
+        <Button Name="drawTriangleButton" Content="Draw triangle" FontSize="22" Grid.Column="0" Grid.Row="5" 
+                MaxHeight="60" MaxWidth="150" Click="drawTriangleButton_Click"/>
+
+        <StackPanel Name="ksi1StackPanel" Orientation="Vertical" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center">
             <Button Name="ksi1Button" Content="Draw ksi 1" FontSize="22"
                 MaxHeight="60" MaxWidth="150" Click="ksi1Button_Click"/>
             <TextBox Name="ksi1TextBox" FontSize="20" Width="60" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
         </StackPanel>
 
-        <StackPanel Name="ksi2StackPanel" Orientation="Vertical" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center">
+        <StackPanel Name="ksi2StackPanel" Orientation="Vertical" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center">
             <Button Name="ksi2Button" Content="Draw ksi 2" FontSize="22"
                 MaxHeight="60" MaxWidth="150" Click="ksi2Button_Click"/>
             <TextBox Name="ksi2TextBox" FontSize="20" Width="60" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
         </StackPanel>
 
-        <StackPanel Name="ksi3StackPanel" Orientation="Vertical" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center">
+        <StackPanel Name="ksi3StackPanel" Orientation="Vertical" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center">
             <Button Name="ksi3Button" Content="Draw ksi 3" FontSize="22"
                 MaxHeight="60" MaxWidth="150" Click="ksi3Button_Click"/>
             <TextBox Name="ksi3TextBox" FontSize="20" Width="60" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
         </StackPanel>
 
-        <Button Name="clearButton" Content="Clear" FontSize="22" Grid.Column="4" Grid.Row="4" 
+        <Button Name="clearButton" Content="Clear" FontSize="22" Grid.Column="4" Grid.Row="5" 
                 MaxHeight="60" MaxWidth="150" Click="clearButton_Click"/>
 
-        <Canvas Name="canvas"  Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4"/>
+        <Canvas Name="canvas" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" MouseLeftButtonDown="canvas_MouseLeftButtonDown" Background="Transparent"/>
 
     </Grid>
 </Window>

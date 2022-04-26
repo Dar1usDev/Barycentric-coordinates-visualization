@@ -4,28 +4,34 @@ namespace Barycentric_coordinates_visualization
 {
     public class Barycentric
     {
-        private static double[] Xcrds = new double[3];
-        private static double[] Ycrds = new double[3];
+        /// <summary>
+        /// 0 is not used
+        /// </summary>
+        private static double[] Xcoords = new double[4];
+        private static double[] Ycoords = new double[4];
         private static double S2;
-        private static double CalculateS2() => Xcrds[0] * Ycrds[1] + Xcrds[1] * Ycrds[2] + Xcrds[2] * Ycrds[0] 
-            - Xcrds[0] * Ycrds[2] - Xcrds[1] * Ycrds[0] - Xcrds[2] * Ycrds[1];
+        private static double CalculateS2() => Xcoords[0] * Ycoords[1] + Xcoords[1] * Ycoords[2] + Xcoords[2] * Ycoords[0]
+            - Xcoords[0] * Ycoords[2] - Xcoords[1] * Ycoords[0] - Xcoords[2] * Ycoords[1];
 
-        static public double Coord1(double x, double y) => (x * (Ycrds[1] - Ycrds[2]) + y * (Xcrds[2] - Xcrds[1]) 
-            + Xcrds[1] * Ycrds[2] - Xcrds[2] * Ycrds[1]) / S2;
-        static public double Coord2(double x, double y) => (x * (Ycrds[2] - Ycrds[0]) + y * (Xcrds[0] - Xcrds[2])
-            + Xcrds[2] * Ycrds[0] - Xcrds[0] * Ycrds[2]) / S2;
-        static public double Coord3(double x, double y) => (x * (Ycrds[0] - Ycrds[1]) + y * (Xcrds[1] - Xcrds[0]) 
-            + Xcrds[0] * Ycrds[1] - Xcrds[1] * Ycrds[0]) / S2;
-        static public double CenterOf(double _x1, double _x2) => (Math.Max(_x1, _x2) + Math.Min(_x1, _x2)) / 2;
+        public static double Coord1(double x, double y) => (x * (Ycoords[2] - Ycoords[3]) + y * (Xcoords[3] - Xcoords[2])
+            + Xcoords[2] * Ycoords[3] - Xcoords[3] * Ycoords[2]) / S2;
+        public static double Coord2(double x, double y) => (x * (Ycoords[3] - Ycoords[1]) + y * (Xcoords[1] - Xcoords[3])
+            + Xcoords[3] * Ycoords[1] - Xcoords[1] * Ycoords[3]) / S2;
+        public static double Coord3(double x, double y) => (x * (Ycoords[1] - Ycoords[2]) + y * (Xcoords[2] - Xcoords[1])
+            + Xcoords[1] * Ycoords[2] - Xcoords[2] * Ycoords[1]) / S2;
+        public static double CenterOf(double _x1, double _x2) => (Math.Max(_x1, _x2) + Math.Min(_x1, _x2)) / 2;
 
         /// <summary>
-        /// Get x1,y1,x2,y2,x3,y3 massive
+        /// Get x1,x2,x3,y1,y2,y3 massive
         /// </summary>
         public static void SetCoordinates(double[] _coordinates)
         {
-            Array.Copy(_coordinates, 0, Xcrds, 0, 3);
-            Array.Copy(_coordinates, 3, Ycrds, 0, 3);
+            Array.Copy(_coordinates, 0, Xcoords, 1, 3);
+            Array.Copy(_coordinates, 3, Ycoords, 1, 3);
             S2 = CalculateS2();
         }
+
+        public static double[] getXCoords() => Xcoords;
+        public static double[] getYCoords() => Ycoords;
     }
 }
